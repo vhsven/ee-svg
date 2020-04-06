@@ -1,0 +1,15 @@
+\documentclass[crop, tikz]{standalone}
+\usepackage[siunitx, nooldvoltagedirection, american, cute inductors]{circuitikz}
+\begin{document}
+\begin{tikzpicture}[scale=2]
+  \draw                                           (1.5, 1.5)
+        to[short]                                 (2, 1.5)
+        to[open, v^=$V_{out}$, o-o]             (2, 0)
+        to[short]                                 (1.5, 0);
+  \draw                                           (0, 0)
+        to[short]                                 (1.5, 0)
+        to[R, l_ = $R_2$]                         (1.5, 1.5)
+        to[R, l^= $R_1$]                          (0, 1.5)
+        to[voltage source, v=$V_{in}$]         (0, 0);
+\end{tikzpicture}
+\end{document}

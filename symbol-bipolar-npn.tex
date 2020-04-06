@@ -1,0 +1,10 @@
+\documentclass[crop, tikz]{standalone}
+\usepackage[siunitx, nooldvoltagedirection, american, cute inductors]{circuitikz}
+\begin{document}
+\begin{tikzpicture}
+    \draw (0,0) node[npn,](npn){};
+    \draw (npn.E) node[below]{E};
+    \draw (npn.C) node[above]{C};
+    \draw (npn.B) node[left]{B};
+\end{tikzpicture}
+\end{document} 
