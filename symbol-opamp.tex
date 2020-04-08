@@ -1,0 +1,14 @@
+\documentclass[crop, tikz]{standalone}
+\usepackage[siunitx, nooldvoltagedirection, american, cute inductors]{circuitikz}
+\begin{document}
+\begin{tikzpicture}
+    \draw
+    (0,0) node[op amp] (opamp) {}
+    (opamp.+) node[left] {$V_+$}
+    (opamp.-) node[left] {$V_-$}
+    (opamp.out) node[right] {$V_{out}$}
+    (opamp.up) --++(0,0.5) node[vcc]{$V_{S+}$}
+    (opamp.down) --++(0,-0.5) node[vee]{$V_{S-}$}
+    ;
+\end{tikzpicture}
+\end{document} 
