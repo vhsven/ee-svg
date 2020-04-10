@@ -1,3 +1,3 @@
 # latex-alpine-container
 
-![Docker](https://github.com/vhsven/latex-alpine-container/workflows/Docker/badge.svg) 
+![Docker Build](https://github.com/vhsven/ee-svg/workflows/Docker%20Build/badge.svg)
