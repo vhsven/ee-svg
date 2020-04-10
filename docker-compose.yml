@@ -1,14 +1,11 @@
 version: "3"
 
 services:
-  latex-alpine:
-    build:
-      context: ./
-      args:
-        LATEX_PACKAGES: latexmk xkeyval standalone pgf xstring xcolor siunitx circuitikz
-    container_name: latex-alpine
-    image: latex-alpine
+  ee-svg:
+    build: ./
+    container_name: ee-svg
+    image: ee-svg
     networks: []
     volumes:
       - ./:/workdir/
-    command: sh -c "latexmk -pdf && latexmk -c && find . -maxdepth 1 -name \*.pdf -exec pdf2svg {} {}.svg \;"
+    # command: sh -c "find . -maxdepth 1 -name \*.tex -exec pdflatex -shell-escape {} \; && rm -f *.aux && rm -f *.log"

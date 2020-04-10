@@ -1,19 +1,3 @@
-FROM alpine:3.11
-WORKDIR /workdir
-ARG LATEX_PACKAGES
-ENV PATH /usr/local/texlive/2019/bin/x86_64-linuxmusl:$PATH
-RUN apk add --no-cache curl perl fontconfig-dev freetype-dev && \
-    apk add -X http://dl-cdn.alpinelinux.org/alpine/edge/testing pdf2svg && \
-    apk add --no-cache --virtual .fetch-deps xz tar && \
-    mkdir /tmp/install-tl-unx && \
-    curl -L ftp://tug.org/historic/systems/texlive/2019/install-tl-unx.tar.gz | \
-    tar -xz -C /tmp/install-tl-unx --strip-components=1 && \
-    printf "%s\n" \
-      "selected_scheme scheme-basic" \
-      "tlpdbopt_install_docfiles 0" \
-      "tlpdbopt_install_srcfiles 0" \
-      > /tmp/install-tl-unx/texlive.profile && \
-    /tmp/install-tl-unx/install-tl --profile=/tmp/install-tl-unx/texlive.profile && \
-    rm -rf /tmp/install-tl-unx && \
-    apk del .fetch-deps
-RUN tlmgr install $LATEX_PACKAGES
+FROM docker.pkg.github.com/vhsven/texlive-alpine/texlive-alpine:latest
+RUN tlmgr install xkeyval standalone pgf xstring xcolor siunitx circuitikz
+CMD sh -c "find . -maxdepth 1 -name \*.tex -exec pdflatex -shell-escape {} \; && rm -f *.aux && rm -f *.log"
